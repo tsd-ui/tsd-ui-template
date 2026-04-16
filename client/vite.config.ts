@@ -46,15 +46,15 @@ export default defineConfig({
         },
       ],
     }),
-    ...(process.env.NODE_ENV === "development"
-      ? [
+    ...(process.env.TEMPLATE_ENGINE === "on"
+      ? []
+      : [
           ViteEjsPlugin({
             _env: encodeEnv(CONSOLE_ENV, SERVER_ENV_KEYS),
             branding: brandingStrings,
           }),
-        ]
-      : []),
-    ...(process.env.NODE_ENV === "production"
+        ]),
+    ...(process.env.TEMPLATE_ENGINE === "on"
       ? [
           {
             name: "copy-index",
