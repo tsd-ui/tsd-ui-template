@@ -20,6 +20,8 @@ import {
 
 import BarsIcon from "@patternfly/react-icons/dist/esm/icons/bars-icon";
 
+import { ThemeSelector } from "tsd-ui";
+
 import useBranding from "@app/hooks/useBranding";
 
 export const HeaderApp: React.FC = () => {
@@ -62,6 +64,14 @@ export const HeaderApp: React.FC = () => {
         <Toolbar id="toolbar" isFullHeight isStatic>
           <ToolbarContent>
             <ToolbarGroup variant="action-group-plain" align={{ default: "alignEnd" }} />
+            <ToolbarGroup
+              variant="action-group-plain"
+              gap={{ default: "gapNone", md: "gapMd" }}
+            >
+              <ToolbarItem>
+                <ThemeSelector />
+              </ToolbarItem>
+            </ToolbarGroup>
 
             {rightBrand ? (
               <ToolbarGroup>
