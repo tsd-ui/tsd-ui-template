@@ -13,7 +13,7 @@ const logger =
 export default {
   api: {
     pathFilter: "/api",
-    target: CONSOLE_ENV.CONSOLE_API_URL ?? "http://localhost:8080",
+    target: CONSOLE_ENV.API_URL ?? "http://localhost:8080",
     logger,
     changeOrigin: true,
   },

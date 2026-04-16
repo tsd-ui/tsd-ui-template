@@ -91,7 +91,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: CONSOLE_ENV.CONSOLE_API_URL ?? "http://localhost:8080",
+        target: CONSOLE_ENV.API_URL ?? "http://localhost:8080",
         changeOrigin: true,
       },
     },

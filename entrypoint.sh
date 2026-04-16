@@ -2,8 +2,8 @@
 
 set -e
 
-if [[ -z "$CONSOLE_API_URL" ]]; then
-  echo "You must provide CONSOLE_API_URL environment variable" 1>&2
+if [[ -z "$API_URL" ]]; then
+  echo "You must provide API_URL environment variable" 1>&2
   exit 1
 fi
 

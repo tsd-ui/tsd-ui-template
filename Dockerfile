@@ -1,5 +1,5 @@
 # Builder image
-FROM registry.access.redhat.com/ubi9/nodejs-22:latest AS builder
+FROM registry.access.redhat.com/ubi9/nodejs-24:latest AS builder
 
 USER 1001
 COPY --chown=1001 . .
@@ -12,7 +12,7 @@ RUN \
   npm run dist
 
 # Runner image
-FROM registry.access.redhat.com/ubi9/nodejs-22-minimal:latest
+FROM registry.access.redhat.com/ubi9/nodejs-24-minimal:latest
 
 USER 0
 RUN microdnf -y install tar procps-ng && microdnf clean all

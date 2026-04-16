@@ -18,7 +18,7 @@ export interface ConsoleEnvType {
   PORT?: string;
 
   /** Target URL for the UI server's `/api` proxy */
-  CONSOLE_API_URL?: string;
+  API_URL?: string;
 
   /** Location of branding files (relative paths computed from the project source root) */
   BRANDING?: string;
@@ -28,7 +28,7 @@ export interface ConsoleEnvType {
  * Keys in `ConsoleEnv` that are only used on the server and therefore do not
  * need to be sent to the client.
  */
-export const SERVER_ENV_KEYS = ["PORT", "CONSOLE_API_URL", "BRANDING"];
+export const SERVER_ENV_KEYS = ["PORT", "API_URL", "BRANDING"];
 
 /**
  * Create a `ConsoleEnv` from a partial `ConsoleEnv` with a set of default values.
@@ -37,13 +37,13 @@ export const buildConsoleEnv = ({
   NODE_ENV = "production",
   PORT,
   VERSION = "99.0.0",
-  CONSOLE_API_URL,
+  API_URL,
   BRANDING,
 }: Partial<ConsoleEnvType> = {}): ConsoleEnvType => ({
   NODE_ENV,
   PORT,
   VERSION,
-  CONSOLE_API_URL,
+  API_URL,
   BRANDING,
 });
 
