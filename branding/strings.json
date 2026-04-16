@@ -1,0 +1,24 @@
+{
+  "application": {
+    "title": "TSD Console",
+    "name": "TSD Console UI",
+    "description": "TSD Console UI"
+  },
+  "about": {
+    "displayName": "TSD Console",
+    "imageSrc": "<%= brandingRoot %>/images/masthead-logo.svg",
+    "darkModeImageSrc": "<%= brandingRoot %>/images/masthead-logo-dark.svg",
+    "documentationUrl": ""
+  },
+  "masthead": {
+    "leftBrand": {
+      "src": "<%= brandingRoot %>/images/masthead-logo.svg",
+      "darkModeSrc": "<%= brandingRoot %>/images/masthead-logo-dark.svg",
+      "alt": "TSD Console",
+      "height": "40px"
+    },
+    "leftTitle": null,
+    "rightBrand": null,
+    "supportUrl": null
+  }
+}
