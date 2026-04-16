@@ -34,7 +34,7 @@
   "peerDependencies": {
     "react": "^18 || ^19.0.0",
     "react-dom": "^18 || ^19.0.0",
-    "typescript": "~5.8.3 || ~5.9.0"
+    "typescript": "^6.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
