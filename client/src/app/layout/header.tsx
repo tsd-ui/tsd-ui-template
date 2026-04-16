@@ -21,7 +21,6 @@ import {
 import BarsIcon from "@patternfly/react-icons/dist/esm/icons/bars-icon";
 
 import useBranding from "@app/hooks/useBranding";
-import { ThemeAwareLogo } from "@app/components/ThemeAwareLogo";
 
 export const HeaderApp: React.FC = () => {
   const {
@@ -41,9 +40,8 @@ export const HeaderApp: React.FC = () => {
             <Split>
               <SplitItem>
                 {leftBrand ? (
-                  <ThemeAwareLogo
-                    lightSrc={leftBrand.src}
-                    darkSrc={leftBrand.darkModeSrc}
+                  <Brand
+                    src={leftBrand.src}
                     alt={leftBrand.alt}
                     heights={{ default: leftBrand.height }}
                   />

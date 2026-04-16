@@ -1,6 +1,5 @@
 export interface MastheadBrand {
   src: string;
-  darkModeSrc: string;
   alt: string;
   height: string;
 }
@@ -21,7 +20,6 @@ export interface BrandingStrings {
   about: {
     displayName: string;
     imageSrc?: string;
-    darkModeImageSrc?: string;
     documentationUrl?: string;
   };
 

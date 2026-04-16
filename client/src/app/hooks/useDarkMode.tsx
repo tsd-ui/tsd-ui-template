@@ -82,11 +82,3 @@ export const useDarkMode = () => {
   }
   return { mode: context.mode, setMode: context.setMode, modes: THEME_MODES };
 };
-
-export const useIsDarkMode = (): boolean => {
-  const context = useContext(DarkModeContext);
-  if (!context) {
-    throw new Error("useIsDarkMode must be used within DarkModeProvider");
-  }
-  return context.isDark;
-};
