@@ -87,7 +87,7 @@ const useStorage = <T>({
     const onStorageUpdated = (event: StorageEvent) => {
       if (event.key === key) {
         setCachedValue(
-          event.newValue ? JSON.parse(event.newValue) : defaultValue,
+          event.newValue ? (JSON.parse(event.newValue) as T) : defaultValue,
         );
       }
     };

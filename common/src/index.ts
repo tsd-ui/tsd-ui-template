@@ -19,4 +19,4 @@ export const encodeEnv = (env: object, exclude?: string[]): string => {
  */
 
 export const decodeEnv = (env: string): object =>
-  env ? JSON.parse(atob(env)) : {};
+  env ? (JSON.parse(atob(env)) as object) : {};
