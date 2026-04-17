@@ -1,6 +1,11 @@
 import type React from "react";
 
-import { Nav, NavList, PageSidebar, PageSidebarBody } from "@patternfly/react-core";
+import {
+  Nav,
+  NavList,
+  PageSidebar,
+  PageSidebarBody,
+} from "@patternfly/react-core";
 import nav from "@patternfly/react-styles/css/components/Nav/nav";
 
 export const SidebarApp: React.FC = () => {
@@ -10,7 +15,9 @@ export const SidebarApp: React.FC = () => {
         <Nav id="nav-sidebar" aria-label="Nav">
           <NavList>
             <li className={nav.navItem}>
-              <a href="/" className={nav.navLink}>Home</a>
+              <a href="/" className={nav.navLink}>
+                Home
+              </a>
             </li>
           </NavList>
         </Nav>

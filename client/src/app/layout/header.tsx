@@ -51,7 +51,10 @@ export const HeaderApp: React.FC = () => {
               </SplitItem>
               <SplitItem isFilled>
                 {leftTitle ? (
-                  <Title headingLevel={leftTitle?.heading ?? "h1"} size={leftTitle?.size ?? "2xl"}>
+                  <Title
+                    headingLevel={leftTitle?.heading ?? "h1"}
+                    size={leftTitle?.size ?? "2xl"}
+                  >
                     {leftTitle.text}
                   </Title>
                 ) : null}
@@ -63,7 +66,10 @@ export const HeaderApp: React.FC = () => {
       <MastheadContent>
         <Toolbar id="toolbar" isFullHeight isStatic>
           <ToolbarContent>
-            <ToolbarGroup variant="action-group-plain" align={{ default: "alignEnd" }} />
+            <ToolbarGroup
+              variant="action-group-plain"
+              align={{ default: "alignEnd" }}
+            />
             <ToolbarGroup
               variant="action-group-plain"
               gap={{ default: "gapNone", md: "gapMd" }}
@@ -76,7 +82,11 @@ export const HeaderApp: React.FC = () => {
             {rightBrand ? (
               <ToolbarGroup>
                 <ToolbarItem>
-                  <Brand src={rightBrand.src} alt={rightBrand.alt} heights={{ default: rightBrand.height }} />
+                  <Brand
+                    src={rightBrand.src}
+                    alt={rightBrand.alt}
+                    heights={{ default: rightBrand.height }}
+                  />
                 </ToolbarItem>
               </ToolbarGroup>
             ) : null}

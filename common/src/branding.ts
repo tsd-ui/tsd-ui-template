@@ -37,4 +37,5 @@ export interface BrandingStrings {
 //       JSON import with the actual branding information.
 import * as stringsJson from "@branding/strings.json";
 
-export const brandingStrings = stringsJson.default as unknown as BrandingStrings;
+export const brandingStrings =
+  stringsJson.default as unknown as BrandingStrings;

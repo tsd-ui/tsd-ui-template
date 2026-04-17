@@ -9,11 +9,18 @@ import { defineConfig } from "vite";
 import { ViteEjsPlugin } from "vite-plugin-ejs";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 
-import { brandingStrings, CONSOLE_ENV, encodeEnv, SERVER_ENV_KEYS } from "@tsd-ui/common";
+import {
+  brandingStrings,
+  CONSOLE_ENV,
+  encodeEnv,
+  SERVER_ENV_KEYS,
+} from "@tsd-ui/common";
 
 const require = createRequire(import.meta.url);
 export const brandingAssetPath = () =>
-  require.resolve("@tsd-ui/common/package.json").replace(/(.)\/package.json$/, "$1") + "/dist/branding";
+  require
+    .resolve("@tsd-ui/common/package.json")
+    .replace(/(.)\/package.json$/, "$1") + "/dist/branding";
 
 const brandingPath: string = brandingAssetPath();
 const manifestPath = path.resolve(brandingPath, "manifest.json");
@@ -80,7 +87,10 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id: string) {
-          if (id.includes("node_modules/react-dom") || id.includes("node_modules/react/")) {
+          if (
+            id.includes("node_modules/react-dom") ||
+            id.includes("node_modules/react/")
+          ) {
             return "react";
           }
         },
@@ -102,10 +112,7 @@ export default defineConfig({
     setupFiles: "./test-setup.ts",
     server: {
       deps: {
-        inline: [
-          "@patternfly/react-styles",
-          "@tsd-ui/common",
-        ],
+        inline: ["@patternfly/react-styles", "@tsd-ui/common"],
       },
     },
     coverage: {

@@ -11,7 +11,9 @@ interface DefaultLayoutProps {
 
 export const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
   const pageId = "main-content-page-layout-horizontal-nav";
-  const PageSkipToContent = <SkipToContent href={`#${pageId}`}>Skip to content</SkipToContent>;
+  const PageSkipToContent = (
+    <SkipToContent href={`#${pageId}`}>Skip to content</SkipToContent>
+  );
 
   return (
     <Page

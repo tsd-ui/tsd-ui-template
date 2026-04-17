@@ -8,7 +8,12 @@ import express from "express";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import { createHttpTerminator } from "http-terminator";
 
-import { SERVER_ENV_KEYS, CONSOLE_ENV, brandingStrings, encodeEnv } from "@tsd-ui/common";
+import {
+  SERVER_ENV_KEYS,
+  CONSOLE_ENV,
+  brandingStrings,
+  encodeEnv,
+} from "@tsd-ui/common";
 import proxies from "./proxies";
 
 const debugMode = process.env.DEBUG === "1";

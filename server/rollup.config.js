@@ -1,4 +1,4 @@
-/* eslint-env node */
+/* global node*/
 
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
