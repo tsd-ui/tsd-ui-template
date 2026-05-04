@@ -1,0 +1,136 @@
+/// <reference types="vitest/config" />
+
+import fs from "fs";
+import { createRequire } from "module";
+import path from "path";
+
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+import { ViteEjsPlugin } from "vite-plugin-ejs";
+import { viteStaticCopy } from "vite-plugin-static-copy";
+
+import {
+  brandingStrings,
+  CONSOLE_ENV,
+  encodeEnv,
+  SERVER_ENV_KEYS,
+} from "@tsd-ui/common";
+
+const require = createRequire(import.meta.url);
+export const brandingAssetPath = () =>
+  require
+    .resolve("@tsd-ui/common/package.json")
+    .replace(/(.)\/package.json$/, "$1") + "/dist/branding";
+
+const brandingPath: string = brandingAssetPath();
+const manifestPath = path.resolve(brandingPath, "manifest.json");
+const faviconPath = path.resolve(brandingPath, "favicon.svg");
+
+// https://vite.dev/config/
+export default defineConfig({
+  base: process.env.BASE_URL,
+  plugins: [
+    react(),
+    {
+      name: "ignore-process-env",
+      transform(code) {
+        return code.replace(/process\.env/g, "({})");
+      },
+    },
+    viteStaticCopy({
+      targets: [
+        {
+          src: manifestPath,
+          dest: ".",
+        },
+        {
+          src: brandingPath,
+          dest: ".",
+        },
+        {
+          src: faviconPath,
+          dest: ".",
+        },
+      ],
+    }),
+    ...(process.env.TEMPLATE_ENGINE === "on"
+      ? []
+      : [
+          ViteEjsPlugin({
+            _env: encodeEnv(CONSOLE_ENV, SERVER_ENV_KEYS),
+            branding: brandingStrings,
+          }),
+        ]),
+    ...(process.env.TEMPLATE_ENGINE === "on"
+      ? [
+          {
+            name: "copy-index",
+            closeBundle: () => {
+              const distDir = path.resolve(__dirname, "dist");
+              const src = path.join(distDir, "index.html");
+              const dest = path.join(distDir, "index.html.ejs");
+
+              if (fs.existsSync(src)) {
+                fs.renameSync(src, dest);
+              }
+            },
+          },
+        ]
+      : []),
+  ],
+  resolve: {
+    alias: {
+      "@app": path.resolve(__dirname, "./src/app"),
+    },
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id: string) {
+          if (
+            id.includes("node_modules/react-dom") ||
+            id.includes("node_modules/react/")
+          ) {
+            return "react";
+          }
+        },
+      },
+    },
+    sourcemap: process.env.NODE_ENV === "development",
+  },
+  server: {
+    proxy: {
+      "/api": {
+        target: CONSOLE_ENV.API_URL ?? "http://localhost:8080",
+        changeOrigin: true,
+      },
+    },
+  },
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./test-setup.ts",
+    server: {
+      deps: {
+        inline: ["@patternfly/react-styles", "@tsd-ui/common"],
+      },
+    },
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "json", "html"],
+      reportsDirectory: "./coverage",
+      include: ["src/**/*.{ts,tsx}"],
+      exclude: [
+        "**/*.test.{ts,tsx}",
+        "**/*.spec.{ts,tsx}",
+        "**/node_modules/**",
+        "**/dist/**",
+        "**/coverage/**",
+        "**/*.d.ts",
+        "**/test-setup.ts",
+        "**/vite.config.ts",
+        "**/types/**",
+      ],
+    },
+  },
+});

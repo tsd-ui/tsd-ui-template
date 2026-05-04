@@ -1,0 +1,22 @@
+{
+  "application": {
+    "title": "TSD Console",
+    "name": "TSD Console UI",
+    "description": "TSD Console UI"
+  },
+  "about": {
+    "displayName": "TSD Console",
+    "imageSrc": "<%= brandingRoot %>/images/masthead-logo.svg",
+    "documentationUrl": ""
+  },
+  "masthead": {
+    "leftBrand": {
+      "src": "<%= brandingRoot %>/images/masthead-logo.svg",
+      "alt": "TSD Console",
+      "height": "40px"
+    },
+    "leftTitle": null,
+    "rightBrand": null,
+    "supportUrl": "https://github.com/tsd-ui/tsd-ui-template/issues"
+  }
+}

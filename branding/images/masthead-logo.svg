@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40">
+  <defs>
+    <style>
+      .logo-text {
+        fill: #151515;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .logo-text {
+          fill: #ffffff;
+        }
+      }
+    </style>
+  </defs>
+  <text x="0" y="30" font-family="RedHatDisplay, sans-serif" font-size="28" font-weight="bold" class="logo-text">TSD Console</text>
+</svg>
