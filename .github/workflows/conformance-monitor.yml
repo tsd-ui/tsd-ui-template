@@ -1,0 +1,67 @@
+name: Conformance Monitor
+
+on:
+  schedule:
+    - cron: "23 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  pages: write
+  id-token: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo:
+          - guacsec/trustify-ui
+          - securesign/rhtas-console-ui
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          path: template
+      - uses: actions/checkout@v6
+        with:
+          repository: ${{ matrix.repo }}
+          path: ${{ matrix.repo }}
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Install template dependencies
+        working-directory: template
+        run: npm ci
+
+      - name: Check conformance for ${{ matrix.repo }}
+        working-directory: template
+        run: node scripts/check-conformance.mjs ../${{ matrix.repo }}
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: report-${{ strategy.job-index }}
+          path: template/conformance-report-*.json
+
+  publish:
+    needs: check
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - uses: actions/download-artifact@v8
+        with:
+          path: reports
+          merge-multiple: true
+      - name: Generate HTML report
+        run: node scripts/generate-report-page.mjs reports/
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: report-site/
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v5

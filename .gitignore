@@ -53,3 +53,7 @@ test-results/
 managed_context/
 test_suite_analysis/
 .claude/settings.local.json
+
+# Conformance reports (generated)
+conformance-report-*.json
+report-site/
