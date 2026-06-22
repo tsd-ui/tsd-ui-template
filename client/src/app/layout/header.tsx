@@ -22,12 +22,12 @@ import BarsIcon from "@patternfly/react-icons/dist/esm/icons/bars-icon";
 
 import { ThemeSelector } from "tsd-ui";
 
-import useBranding from "@app/hooks/useBranding";
+import getBranding from "@app/hooks/useBranding";
 
 export const HeaderApp: React.FC = () => {
   const {
     masthead: { leftBrand, leftTitle, rightBrand },
-  } = useBranding();
+  } = getBranding();
 
   return (
     <Masthead>

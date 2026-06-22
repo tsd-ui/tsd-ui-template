@@ -1,0 +1,7 @@
+# Library, IDE and build locations
+**/node_modules/
+**/coverage/
+**/dist/
+.vscode/
+.idea/
+.eslintcache/

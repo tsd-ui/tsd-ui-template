@@ -49,7 +49,7 @@ npm run coverage -w client # Coverage report (v8 provider)
 ## Code Style
 
 - Double quotes (Prettier `singleQuote: false`), semicolons required, 2-space indent
-- ESLint flat config with TypeScript strict + stylistic checks, React hooks/refresh plugins
+- ESLint 10 flat config with TypeScript strict + stylistic checks, @eslint-react, @tanstack/eslint-plugin-query, and react-refresh plugins
 - Unused variables must be prefixed with `_`
 - `React.FC<Props>` for typed components; functional components only
 - Barrel exports via `index.ts` files for layout, components
